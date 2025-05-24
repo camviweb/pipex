@@ -1,7 +1,7 @@
 # Projet en cours ⚡
 ![validation](./pipex.png)
 - ~50h
-- Page 5/9 done
+- Page 6/9 done
 
 ## Description
 Reproduce the behaviour of `< file1 cmd1 | cmd2 > file2` with a program 
