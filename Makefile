@@ -8,10 +8,9 @@ LIBFTD	=libft
 CFLAGS	=-Wall -Wextra -Werror
 CC		=cc $(CFLAGS)
 
-SRC 	=$(SRCD)/main.c \
-$(SRCD)/m_utils1.c \
+SRC 	=$(SRCD)/main.c
 
-OBJ		=$(OBJD)/main.o \
+OBJ		=$(OBJD)/main.o
 
 LIBFT	=$(LIBFTD)/libft.a
 

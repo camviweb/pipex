@@ -1,7 +1,7 @@
 # Projet en cours ⚡
 ![validation](./pipex.png)
 - ~50h
-- Page 6/9 done
+- Page 9/9 done
 
 ## Description
 Reproduce the behaviour of `< file1 cmd1 | cmd2 > file2` with a program 
@@ -10,15 +10,23 @@ Reproduce the behaviour of `< file1 cmd1 | cmd2 > file2` with a program
 - redirections
 - pipes
 
-## To use/do
-- [ ]
-
 ## To test
 - [ ] make fclean
 - [ ] norminette (42 header)
 - [ ] valgrind !!
-- [ ] file names/git repo : Makefile, *.h, *.c, maps, textures
+- [ ] file names/git repo : Makefile, *.h, *.c
 - [ ] (guidelines -> tests)
+
+## CI
+```bash
+./pipex infile "ls -l" "wc -l" outfile
+```
+```bash
+./pipex infile "grep a1" "wc -w" outfile
+```
+```bash
+./pipex infile "cat" "wc" outfile
+```
 
 ## Utilisation
 ### Compilation
@@ -28,7 +36,7 @@ make
 
 ### Execution
 ```bash
-./pipex [file1] [cmd1] [cmd2] [file2]
+./pipex [file1] "[cmd1]" "[cmd2]" [file2]
 ```
 file1, file2 des noms des fichiers
 cmd1, cmd2 des commandes shell (avec parametres)
