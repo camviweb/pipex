@@ -1,79 +1,64 @@
 #include "pipex.h"
 
-int	open_file(char *file, int in_or_out)
+void	m_error(char *mess)
 {
-	int	ret;
-
-	if (in_or_out == 0)
-		ret = open(file, O_RDONLY, 0777);
-	if (in_or_out == 1)
-		ret = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0777);
-	if (ret == -1)
-		exit(0);
-	return (ret);
+	ft_putstr_fd(mess, 2);
+	exit(1);
 }
 
-void	ft_free_tab(char **tab)
+void	env_check(char **env)
 {
-	size_t	i;
+    int i;
+    int ok;
 
-	i = 0;
-	while (tab[i])
-	{
-		free(tab[i]);
+    i = 0;
+    ok = 0;
+    while (env[i]){
+	    ft_printf(env[i]);
+	    ft_printf("\n");
+		if (ft_strnstr(env[i], "PATH=", 5) && env[i][5])
+        	ok = 1;
 		i++;
-	}
-	free(tab);
+    }
+    if (!ok)
+        m_error("Path incorrect");
 }
 
-char	*my_getenv(char *name, char **env)
+char	*get_cmd_path(char *cmd, char **env)
 {
+	char	**envp_paths;
+	char	*cmd_path;
 	int		i;
-	int		j;
-	char	*sub;
+	char	*only_path;
 
 	i = 0;
-	while (env[i])
-	{
-		j = 0;
-		while (env[i][j] && env[i][j] != '=')
-			j++;
-		sub = ft_substr(env[i], 0, j);
-		if (ft_strcmp(sub, name) == 0)
-		{
-			free(sub);
-			return (env[i] + j + 1);
-		}
-		free(sub);
+	while (!ft_strnstr(env[i], "PATH=", 5))
 		i++;
+	envp_paths = ft_split(env[i] + 5, ':');
+	i = -1;
+	while (envp_paths[++i])
+	{
+		only_path = ft_strjoin(envp_paths[i], "/");
+		cmd_path = ft_strjoin(only_path, cmd);
+		free (only_path);
+		if (access(cmd_path, F_OK) == 0)
+		{
+			free_split(envp_paths);
+			return (cmd_path);
+		}
+		free(cmd_path);
 	}
+	free_split(envp_paths);
+	m_error("Une commande n'a pas été trouvée :/");
 	return (NULL);
 }
 
-char	*get_path(char *cmd, char **env)
+void	free_split(char **str)
 {
-	int		i;
-	char	*exec;
-	char	**allpath;
-	char	*path_part;
-	char	**s_cmd;
+	int	i;
 
-	i = -1;
-	allpath = ft_split(my_getenv("PATH", env), ':');
-	s_cmd = ft_split(cmd, ' ');
-	while (allpath[++i])
-	{
-		path_part = ft_strjoin(allpath[i], "/");
-		exec = ft_strjoin(path_part, s_cmd[0]);
-		free(path_part);
-		if (access(exec, F_OK | X_OK) == 0)
-		{
-			ft_free_tab(s_cmd);
-			return (exec);
-		}
-		free(exec);
-	}
-	ft_free_tab(allpath);
-	ft_free_tab(s_cmd);
-	return (cmd);
+	i = 0;
+	while (str[i])
+		free(str[i++]);
+	free(str);
 }

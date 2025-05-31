@@ -15,7 +15,7 @@
 # include <stdarg.h>
 # include <stddef.h>
 # include <stdlib.h> // exit, free, malloc
-# include <unistd.h> // write, read, access, execve
+# include <unistd.h> // write, read, access, execve, fork, pipe, dup2
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
