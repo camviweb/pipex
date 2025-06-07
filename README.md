@@ -1,22 +1,35 @@
 # Projet en cours ⚡
 ![validation](./pipex.png)
-- ~50h
-- Page 9/9 done
 
 ## Description
 Reproduce the behaviour of `< file1 cmd1 | cmd2 > file2` with a program 
 
 ## Keywords
 - redirections
-- subprocesses (child and parent)
-- pipes to connect the processes 
 
-## To test
+## Tasks
+- [x] Read the subject
+- [x] Initialize a git repo with a readme
+- [x] Create a makefile with the required rules
+- [x] Parsing (arguments count management)
+- [ ] ? Check the existence of infile ? 
+- [x] Errors management choice : simple -> m_error with a custom message and exit(1) = execution interrompue
+    - [ ] Existing files
+    - [ ] Files rights
+    - [x] Binaries of the commands
+- [x] Check path variable exists
+- [x] Search the 2 commands paths
+- [x] Build the arguments array for commands 
+- [x] Create the pipe WHY ? To link subprocesses
+- [x] Create the fork WHY ? Split the process in 2 parallel subprocesses
+- [x] Create a child and parent process
+- [ ] open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
+- [ ] No wait for /dev/urandom
 - [ ] make fclean
 - [ ] norminette (42 header)
 - [ ] valgrind !!
 - [ ] file names/git repo : Makefile, *.h, *.c
-- [ ] (guidelines -> tests)
+- [ ] git push and check
 
 ## CI
 ```bash
@@ -27,6 +40,9 @@ Reproduce the behaviour of `< file1 cmd1 | cmd2 > file2` with a program
 ```
 ```bash
 ./pipex infile "cat" "wc" outfile
+```
+```bash
+valgrind --leak-check=full --trace-children=yes ./pipex file1 cmd1 cmd2 file2
 ```
 
 ## Utilisation
