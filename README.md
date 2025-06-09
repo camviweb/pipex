@@ -9,10 +9,10 @@ Reproduce the behaviour of `< file1 cmd1 | cmd2 > file2` with a program
 - [x] Initialize a git repo with a readme
 - [x] Create a makefile with the required rules
 - [x] Parsing (arguments count management)
-- [ ] ? Check the existence of infile ? 
+- [x] ? Check the existence of infile ? in open
 - [x] Errors management choice : simple -> m_error with a custom message and exit(1) = execution interrompue
-    - [ ] Existing files
-    - [ ] Files rights
+    - [x] Existing files
+    - [x] Files rights
     - [x] Binaries of the commands
 - [x] Check path variable exists
 - [x] Search the 2 commands paths
