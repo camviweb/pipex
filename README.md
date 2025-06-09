@@ -41,7 +41,7 @@ Reproduce the behaviour of `< file1 cmd1 | cmd2 > file2` with a program
 ./pipex infile "cat" "wc" outfile
 ```
 ```bash
-valgrind --leak-check=full --trace-children=yes ./pipex file1 cmd1 cmd2 file2
+valgrind --leak-check=full --trace-children=yes ./pipex infile "sleep 5" "wc -w" outfile
 ```
 
 ## Utilisation
@@ -54,5 +54,5 @@ make
 ```bash
 ./pipex [file1] "[cmd1]" "[cmd2]" [file2]
 ```
-file1, file2 des noms des fichiers
+file1, file2 des noms des fichiers \
 cmd1, cmd2 des commandes shell (avec parametres)
