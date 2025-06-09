@@ -4,9 +4,6 @@
 ## Description
 Reproduce the behaviour of `< file1 cmd1 | cmd2 > file2` with a program 
 
-## Keywords
-- redirections
-
 ## Tasks
 - [x] Read the subject
 - [x] Initialize a git repo with a readme
@@ -23,13 +20,15 @@ Reproduce the behaviour of `< file1 cmd1 | cmd2 > file2` with a program
 - [x] Create the pipe WHY ? To link subprocesses
 - [x] Create the fork WHY ? Split the process in 2 parallel subprocesses
 - [x] Create a child and parent process
-- [ ] open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
-- [ ] No wait for /dev/urandom
-- [ ] make fclean
-- [ ] norminette (42 header)
-- [ ] valgrind !!
-- [ ] file names/git repo : Makefile, *.h, *.c
-- [ ] git push and check
+- [x] In child : redirect standard input to infile && standard output to pipe writeend
+- [x] In parent : redirect standard input to pipe readend && standard output to outfile 
+- [x] open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0777) for rights 
+- [x] No wait for /dev/urandom
+- [x] make fclean
+- [x] norminette (42 header)
+- [x] valgrind !!
+- [x] file names/git repo : Makefile, *.h, *.c
+- [x] git push and check
 
 ## CI
 ```bash
