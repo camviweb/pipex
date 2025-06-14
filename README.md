@@ -1,4 +1,4 @@
-# Projet en cours ⚡
+# Project done ⚡
 ![validation](./pipex.png)
 
 ## Description
