@@ -15,9 +15,6 @@
 # include "../libft/libft.h"
 # include <fcntl.h>     // open, close
 # include <sys/types.h> // pid_t
-# include <sys/wait.h>  // waitpid
-// # include <stdio.h>
-// # include <sys/stat.h>
 
 // main.c
 void	exec_cmd(char *cmd, char **env);
